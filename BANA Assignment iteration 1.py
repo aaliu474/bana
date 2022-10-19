@@ -61,6 +61,8 @@ df2.info()
 
 
 new_df2=df2.copy()
-new_df2=new_df2.drop(new_df2.loc[0:2])
+# new_df2=new_df2.drop(new_df2.loc[0:2])
+# The above does not drop all nan, so adding this below it to do so
+new_df2 = new_df2.dropna()
 new_df2
 
