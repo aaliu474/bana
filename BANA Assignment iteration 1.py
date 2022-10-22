@@ -55,14 +55,35 @@ df1.info()
 df2.info()
 
 
-# ### Drop first two cells for data cleaning purposes
+## Pull the column title "Geographic Area"
+label = df2.iloc[2,0]
 
-# In[52]:
+## Pull the remainder row containing the header
+headers = df2.iloc[3:4]
 
+## Pull the values within the rows
+headers.values
 
-new_df2=df2.copy()
-# new_df2=new_df2.drop(new_df2.loc[0:2])
-# The above does not drop all nan, so adding this below it to do so
-new_df2 = new_df2.dropna()
-new_df2
+## Create new column header array
+newColumnHeaders = []
 
+## Add the first value to it
+newColumnHeaders.append(label)
+
+## Add the remainder values to it
+for x in headers.values[0]:
+    if isinstance(x, float):
+        if np.isnan(x):
+            continue
+        newColumnHeaders.append(int(x))
+        continue
+    newColumnHeaders.append(x)
+
+newColumnHeaders
+
+## Make the clean data frame with the values from United States to Puerto Rico
+cleanDF = pd.DataFrame(df2.iloc[4:-5])
+## Assign the new column headers
+cleanDF.columns = newColumnHeaders
+## Get rid of row number 60 as it was just an empty row
+cleanDF.dropna()
