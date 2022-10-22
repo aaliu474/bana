@@ -10,7 +10,7 @@ import pandas as pd
 import numpy as np
 
 
-# ### store your directory and file names in a variable for code reusability
+# ### Store your directory and file names in a variable for code reusability
 
 # In[37]:
 
@@ -20,7 +20,7 @@ file1='NCHS_-_Leading_Causes_of_Death__United_States.csv'
 file2='nst-est2018-01.xlsx'
 
 
-# ### reading the file into data frames
+# ### Reading the file into data frames
 
 # In[40]:
 
@@ -54,6 +54,8 @@ df1.info()
 
 df2.info()
 
+
+# ### Drop the first two rows for data cleaning purposes
 
 ## Pull the column title "Geographic Area"
 label = df2.iloc[2,0]
