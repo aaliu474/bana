@@ -3,16 +3,17 @@
 
 # ### Import important packages like pandas and numpy
 
-# In[1]:
+# In[28]:
 
 
 import pandas as pd
 import numpy as np
+import matplotlib.pyplot as plt
 
 
-# ### Store your directory and file names in a variable for code reusability
+# ### store your directory and file names in a variable for code reusability
 
-# In[37]:
+# In[2]:
 
 
 location='C://Backup//DataPartition//RIT Course Work//BANA//Assignment 1//'
@@ -20,9 +21,9 @@ file1='NCHS_-_Leading_Causes_of_Death__United_States.csv'
 file2='nst-est2018-01.xlsx'
 
 
-# ### Reading the file into data frames
+# ### reading the file into data frames
 
-# In[40]:
+# In[4]:
 
 
 df1=pd.read_csv(location+file1)
@@ -31,31 +32,34 @@ df2=pd.read_excel(location+file2,header=None)
 
 # ### Exploring and viewing the data
 
-# In[27]:
+# In[5]:
 
 
 df1.head()
 
 
-# In[53]:
+# In[6]:
 
 
 df2.head()
 
 
-# In[32]:
+# In[12]:
 
 
 df1.info()
 
 
-# In[33]:
+# In[7]:
 
 
 df2.info()
 
 
-# ### Drop the first two rows for data cleaning purposes
+# ### Drop first two cells for data cleaning purposes
+
+# In[14]:
+
 
 ## Pull the column title "Geographic Area"
 label = df2.iloc[2,0]
@@ -90,6 +94,23 @@ cleanDF.columns = newColumnHeaders
 ## Get rid of row number 60 as it was just an empty row
 cleanDF.dropna()
 
+
+# Use markdown to add your important comments 
+# to create a markdown,add a cell above comment
+# change the option from code to markdown
+# use # for heading 1, ## for heading two and so on...(one space after #)
+# ## please delete this before submitting
+
+# # Question1 Sub question 4
+# 
+# 
+# ## What are top 4 leading causes of death?
+
+# In[44]:
+
+
+# df1
+# df1.columns
 
 # ### Get the four leading causes of Deaths
 
@@ -152,4 +173,56 @@ deaths_descending = total_deaths_per_causes.sort_values(by=['Deaths'], ascending
 ## Display the top 4
 top_4_deaths = deaths_descending.iloc[0:4]
 top_4_deaths
+
+
+# # Question1 Sub question 3
+# 
+# 
+# ## Do individual states show the same four leading causes of death??
+
+# In[85]:
+
+
+df1.head()
+ 
+##Picking up data only for deaths,states and cause name
+
+df1_deaths_states_all=df1.loc[:,['Deaths','State','Cause Name']]
+
+#Maximum values of death group by state and cause name
+
+
+df1_deaths_states_all.sort_values(by='Deaths',ascending=False)
+
+
+
+
+
+# # Question 1 Part 1
+# ## Are Americans facing increasing, decreasing, or steady likelihood of death?
+
+# In[31]:
+
+
+df1.head()
+
+df1_likelihood=df1.groupby('Year').agg('sum')
+df1_likelihood
+
+
+# In[71]:
+
+
+
+plt.figure()
+plt.ylabel("Deaths per Year")
+plt.xlim(1998,2016)
+plt.ylim(50000,100000)
+plt.xlabel("Year")
+plt.title("Deaths likelihood for every year from 1999 to 2006")
+
+plt.plot(df1_likelihood.index,df1_likelihood.values)
+
+
+plt.show()
 
