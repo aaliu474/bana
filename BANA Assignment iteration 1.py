@@ -11,7 +11,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 
-# ### store your directory and file names in a variable for code reusability
+# ### Store your directory and file names in a variable for code reusability
 
 # In[2]:
 
@@ -21,7 +21,7 @@ file1='NCHS_-_Leading_Causes_of_Death__United_States.csv'
 file2='nst-est2018-01.xlsx'
 
 
-# ### reading the file into data frames
+# ### Reading the file into data frames
 
 # In[4]:
 
@@ -95,18 +95,12 @@ cleanDF.columns = newColumnHeaders
 cleanDF.dropna()
 
 
-# Use markdown to add your important comments 
-# to create a markdown,add a cell above comment
-# change the option from code to markdown
-# use # for heading 1, ## for heading two and so on...(one space after #)
-# ## please delete this before submitting
-
-# # Question1 Sub question 4
+# # Question1 Sub Question 2
 # 
 # 
 # ## What are top 4 leading causes of death?
 
-# In[44]:
+# In[11]:
 
 
 # df1
@@ -171,11 +165,11 @@ deaths_descending = total_deaths_per_causes.sort_values(by=['Deaths'], ascending
 # deaths_descending
 
 ## Display the top 4
-top_4_deaths = deaths_descending.iloc[0:4]
+top_4_deaths = deaths_descending.iloc[1:5]
 top_4_deaths
 
 
-# # Question1 Sub question 3
+# # Question1 Sub Question 3
 # 
 # 
 # ## Do individual states show the same four leading causes of death??
@@ -198,7 +192,8 @@ df1_deaths_states_all.sort_values(by='Deaths',ascending=False)
 
 
 
-# # Question 1 Part 1
+
+# # Question 1 Sub Question 1
 # ## Are Americans facing increasing, decreasing, or steady likelihood of death?
 
 # In[31]:
@@ -211,7 +206,6 @@ df1_likelihood
 
 
 # In[71]:
-
 
 
 plt.figure()
